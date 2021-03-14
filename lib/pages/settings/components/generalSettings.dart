@@ -1,35 +1,14 @@
 // Flutter
 import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:songtube/internal/languages.dart';
 import 'package:songtube/internal/nativeMethods.dart';
-import 'package:songtube/provider/preferencesProvider.dart';
 
 class GeneralSettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    PreferencesProvider prefs = Provider.of<PreferencesProvider>(context);
     return ListView(
       children: <Widget>[
-        SwitchListTile(
-          title: Text(
-            "Picture in Picture",
-            style: TextStyle(
-              color: Theme.of(context).textTheme.bodyText1.color,
-              fontWeight: FontWeight.w500
-            ),
-          ),
-          subtitle: Text(
-            "Tapping home buttom will show a mini-player to "
-            "continue with your media playback in the background",
-            style: TextStyle(fontSize: 12)
-          ),
-          value: prefs.enablePictureInPicture,
-          onChanged: (bool value) {
-            prefs.enablePictureInPicture = value;
-          }
-        ),
         FutureBuilder(
           future: DeviceInfoPlugin().androidInfo,
           builder: (context, AsyncSnapshot<AndroidDeviceInfo> info) {
